@@ -34,19 +34,19 @@ The Result pattern offers several benefits:
 ```csharp
 public class Result<T>
 {
-public bool IsSuccess { get; }
-public T Value { get; }
-public string Error { get; }
+  public bool IsSuccess { get; }
+  public T Value { get; }
+  public string Error { get; }
 
 protected Result(bool isSuccess, T value, string error)
 {
-IsSuccess = isSuccess;
-Value = value;
-Error = error;
+  IsSuccess = isSuccess;
+  Value = value;
+  Error = error;
 }
 
-public static Result<T> Success(T value) => new Result<T>(true, value, null);
-public static Result<T> Failure(string error) => new Result<T>(false, default, error);
+  public static Result<T> Success(T value) => new Result<T>(true, value, null);
+  public static Result<T> Failure(string error) => new Result<T>(false, default, error);
 }
 
 Using the Result Pattern
@@ -54,12 +54,12 @@ Here's an example of how you can use the Result pattern in your methods:
 
 public Result<int> Divide(int numerator, int denominator)
 {
-if (denominator == 0)
-{
-return Result<int>.Failure("Division by zero is not allowed.");
-}
-
-return Result<int>.Success(numerator / denominator);
+  if (denominator == 0)
+  {
+  return Result<int>.Failure("Division by zero is not allowed.");
+  }
+  
+  return Result<int>.Success(numerator / denominator);
 }
 
 Example Usage
@@ -67,11 +67,11 @@ var result = Divide(10, 2);
 
 if (result.IsSuccess)
 {
-Console.WriteLine($"Result: {result.Value}");
+  Console.WriteLine($"Result: {result.Value}");
 }
 else
 {
-Console.WriteLine($"Error: {result.Error}");
+  Console.WriteLine($"Error: {result.Error}");
 }
 
 Without Using the Result Pattern
@@ -79,22 +79,22 @@ To better understand the benefits of the Result pattern, let's look at how the s
 
 public int Divide(int numerator, int denominator)
 {
-if (denominator == 0)
-{
-throw new ArgumentException("Division by zero is not allowed.");
-}
-
-return numerator / denominator;
+  if (denominator == 0)
+  {
+  throw new ArgumentException("Division by zero is not allowed.");
+  }
+  
+  return numerator / denominator;
 }
 
 try
 {
-var result = Divide(10, 2);
-Console.WriteLine($"Result: {result}");
+  var result = Divide(10, 2);
+  Console.WriteLine($"Result: {result}");
 }
 catch (ArgumentException ex)
 {
-Console.WriteLine($"Error: {ex.Message}");
+  Console.WriteLine($"Error: {ex.Message}");
 }
 
 
